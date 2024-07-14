@@ -1,0 +1,12 @@
+table,
+th,
+td {
+  border: 1px solid black;
+}
+.post-table th {
+  padding: 0 50px;
+}
+
+.post-table td {
+  text-align: center;
+}
