@@ -1,0 +1,25 @@
+<div class="login-container flex flex-col place-items-center">
+    <div class="w-80 login-form flex flex-col">
+        <div class="w-full flex place-items-start">
+            <span class="text-2xl text-blue-800">Login</span>
+        </div>
+        <hr class="border-2 mb-4 mt-4">
+        <form class="flex flex-col gap-4" [formGroup]="loginForm" (ngSubmit)="submitForm()">
+            <div class="email flex flex-col">
+                <label for="email" class="text-lg">Email</label>
+                <input class="border rounded" type="text" placeholder="Email here" name="email"
+                    formControlName="email" />
+            </div>
+            <div class="passsword" class="flex flex-col">
+                <label for="password" class="text-lg">Password</label>
+                <input class="border rounded" type="text" placeholder="Password here" name="password"
+                    formControlName="password" />
+            </div>
+            <div>
+                <button class="bg-blue-500 p-2 text-lg rounded" type="submit">
+                    Login
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

@@ -9,9 +9,14 @@ import { postReducer } from './post/state/post.reducer';
 import { CounterInterface } from './counter/state/counter-interface';
 import { PostsInterface } from './post/state/post-state';
 import { provideRouterStore } from '@ngrx/router-store';
+import { provideHttpClient } from '@angular/common/http';
+import { EffectsModule } from '@ngrx/effects';
+import { authReducer } from './auth/state/auth.reducer';
+import { LoginSuccessInterface } from './auth/state/auth.state';
 export interface AppState {
   counter: CounterInterface;
   posts: PostsInterface;
+  auth: LoginSuccessInterface;
 }
 
 export const counterFeature = createFeature({
@@ -27,12 +32,15 @@ export const postFeature = createFeature({
 export const storeConfig = {
   counter: counterReducer,
   posts: postReducer,
+  auth: authReducer,
 };
 export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(routes),
+    provideHttpClient(),
     provideRouterStore(),
     importProvidersFrom(
+      EffectsModule.forRoot([]),
       StoreModule.forRoot({}),
       StoreDevtoolsModule.instrument({
         maxAge: 25,

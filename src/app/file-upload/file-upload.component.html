@@ -1,0 +1,7 @@
+<input class="file-browse" type="file" formEnctype="mutlpart/form-data" multiple="multiple" (change)="onSelect($event)"
+    #fileUpload>
+
+<div class="fileSelectionContainer">
+    {{selectedFile||'No file selected'}}
+    <button class="browserbtn" (click)="fileUpload.click()">UploadaFile</button>
+</div>

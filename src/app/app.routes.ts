@@ -7,6 +7,11 @@ import { counterFeature, postFeature } from './app.config';
 import { importProvidersFrom } from '@angular/core';
 import { postReducer } from './post/state/post.reducer';
 import { counterReducer } from './counter/state/counter.reducer';
+import { FileUploadComponent } from './file-upload/file-upload.component';
+import { AuthComponent } from './auth/auth/auth.component';
+import { authReducer } from './auth/state/auth.reducer';
+import { EffectsModule } from '@ngrx/effects';
+import { AuthEffects } from './auth/state/auth.effects';
 
 export const routes: Routes = [
   {
@@ -35,6 +40,20 @@ export const routes: Routes = [
     ],
     providers: [
       importProvidersFrom(StoreModule.forFeature('posts', postReducer)),
+    ],
+  },
+  {
+    path: 'file',
+    component: FileUploadComponent,
+  },
+  {
+    path: 'auth',
+    component: AuthComponent,
+    providers: [
+      importProvidersFrom(
+        EffectsModule.forFeature([AuthEffects]),
+        StoreModule.forFeature('auth', authReducer)
+      ),
     ],
   },
 ];
