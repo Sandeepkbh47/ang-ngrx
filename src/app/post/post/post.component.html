@@ -1,12 +1,13 @@
-<div class="posts-container w-full flex">
-    <div class="w-[60vw] flex flex-col gap-4">
+<div class="posts-container w-full flex flex-wrap">
+    <div class="min-w-[60%] flex flex-col gap-4">
         <div routerLink="add" class="w-fit bg-blue-500 p-2 rounded border"><span>Add Post</span></div>
-        <table class="w-full post-table" *ngIf="posts$ |async  as postsData">
+        <table appPostDirective class="w-full post-table" *ngIf="posts$ |async  as postsData">
             <thead>
                 <tr>
                     <th>Id</th>
                     <th>UserName</th>
                     <th>Description</th>
+                    <th>Rating</th>
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -15,7 +16,8 @@
                     <td>{{post.id}}</td>
                     <td>{{post.name}}</td>
                     <td>{{post.description}}</td>
-                    <td><button class="py-2 px-2 bg-blue-400 mx-2" routerLink="edit/{{post.id}}">Update</button>
+                    <td><app-rating [star]="5"></app-rating> </td>
+                    <td><button class="py-2 px-2 bg-blue-400 mx-2" [routerLink]="['edit',post.id]">Update</button>
                         <button class="py-2 px-2 bg-red-400" (click)="deletePost(post.id)">Delete</button>
                     </td>
                 </tr>

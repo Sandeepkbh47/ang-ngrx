@@ -9,10 +9,11 @@ import { postReducer } from './post/state/post.reducer';
 import { CounterInterface } from './counter/state/counter-interface';
 import { PostsInterface } from './post/state/post-state';
 import { provideRouterStore } from '@ngrx/router-store';
-import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { EffectsModule } from '@ngrx/effects';
 import { authReducer } from './auth/state/auth.reducer';
 import { LoginSuccessInterface } from './auth/state/auth.state';
+import { authInterceptor } from './auth.interceptor';
 export interface AppState {
   counter: CounterInterface;
   posts: PostsInterface;
@@ -37,7 +38,7 @@ export const storeConfig = {
 export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(routes),
-    provideHttpClient(),
+    provideHttpClient(withInterceptors([authInterceptor])),
     provideRouterStore(),
     importProvidersFrom(
       EffectsModule.forRoot([]),

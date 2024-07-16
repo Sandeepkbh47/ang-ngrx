@@ -1,9 +1,12 @@
 <div class="nav-header">
     <div class="w-full header-container flex gap-4 text-lg">
-        <div class="header" routerLink="/">Home</div>
-        <div class="header" routerLink="/counter">Counter</div>
-        <div class="header" routerLink="/posts">Posts</div>
-        <div class="header" routerLink="/file">File</div>
-        <div class="header" routerLink="/auth">Login</div>
+        <div class="header font-semibold" routerLink="/" routerLinkActive="active"
+            [routerLinkActiveOptions]="{'exact':true}">
+            {{title}}
+        </div>
+        <div class="header" routerLink="/counter" routerLinkActive="active">Counter</div>
+        <div class="header" routerLink="/posts" routerLinkActive="active">Posts</div>
+        <div class="header" routerLink="/file" routerLinkActive="active">File</div>
+        <div class="header" routerLink="/auth" routerLinkActive="active">Login</div>
     </div>
 </div>

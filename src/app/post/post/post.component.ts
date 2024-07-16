@@ -8,11 +8,20 @@ import { AppState } from '../../app.config';
 import { AddPostComponent } from '../add-post/add-post.component';
 import { Router, RouterModule, RouterOutlet } from '@angular/router';
 import { deletePostById } from '../state/post.action';
+import { PostDirective } from '../../directives/post-directive.directive';
+import { RatingComponent } from '../rating/rating.component';
 
 @Component({
   selector: 'app-post',
   standalone: true,
-  imports: [CommonModule, RouterModule, RouterOutlet, AddPostComponent],
+  imports: [
+    PostDirective,
+    CommonModule,
+    RouterModule,
+    RouterOutlet,
+    RatingComponent,
+    AddPostComponent,
+  ],
   templateUrl: './post.component.html',
   styleUrl: './post.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,

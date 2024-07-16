@@ -1,4 +1,4 @@
-<div class="formcontainer w-[30vw]">
+<div class="formcontainer min-w-[40%] grow">
     <form class="w-[inherit] flex flex-col gap-4 m-4" [formGroup]="postForm" (ngSubmit)="submitPost()">
         <div class="flex flex-col">
             <label class="text-lg" for=" name">Name</label>
@@ -10,6 +10,14 @@
             <textarea class="min-h-20 border border-black rounded" name="description"
                 formControlName="description"></textarea>
             <div class="text-red-700">{{descriptionErrors()}}</div>
+        </div>
+        <div>
+            <app-rating formControlName="rating">
+                <span class="font-bold" start>
+                    <------ </span>
+                        <span class="font-bold" end>
+                            ------> </span>
+            </app-rating>
         </div>
         <div class="border border-black w-fit rounded ">
             <button [disabled]="!postForm.valid" class="bg-blue-400 rounded p-2 disabled:bg-blue-100"

@@ -12,11 +12,13 @@ import { AppState } from '../../app.config';
 import { addPost, updatePost } from '../state/post.action';
 import { ActivatedRoute, Router } from '@angular/router';
 import { getPostById } from '../state/post.selector';
+import { usernameValidator } from './username.validator';
+import { RatingComponent } from '../rating/rating.component';
 
 @Component({
   selector: 'app-add-post',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, RatingComponent],
   templateUrl: './add-post.component.html',
   styleUrl: './add-post.component.css',
 })
@@ -29,14 +31,12 @@ export class AddPostComponent {
     private activatedRoute: ActivatedRoute
   ) {
     this.postForm = new FormGroup({
-      name: new FormControl(null, [
-        Validators.required,
-        Validators.minLength(6),
-      ]),
+      name: new FormControl(null, [Validators.required, usernameValidator()]),
       description: new FormControl(null, [
         Validators.required,
         Validators.minLength(10),
       ]),
+      rating: new FormControl('', [Validators.required]),
     });
   }
 
@@ -55,7 +55,7 @@ export class AddPostComponent {
       if (nameForm?.errors?.['required']) {
         return 'Name must must be provided';
       }
-      if (nameForm?.errors?.['minLength']) {
+      if (nameForm?.errors?.['usernameValidator']) {
         return 'Name must atleast be of 6 characters';
       }
     }

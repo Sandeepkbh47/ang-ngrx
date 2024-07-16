@@ -12,6 +12,7 @@ import { AuthComponent } from './auth/auth/auth.component';
 import { authReducer } from './auth/state/auth.reducer';
 import { EffectsModule } from '@ngrx/effects';
 import { AuthEffects } from './auth/state/auth.effects';
+import { canActivateGuard } from './gurads/can-activate.guard';
 
 export const routes: Routes = [
   {
@@ -41,6 +42,7 @@ export const routes: Routes = [
     providers: [
       importProvidersFrom(StoreModule.forFeature('posts', postReducer)),
     ],
+    canActivate: [canActivateGuard],
   },
   {
     path: 'file',

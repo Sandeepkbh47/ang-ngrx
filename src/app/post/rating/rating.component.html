@@ -1,0 +1,7 @@
+<ng-content select="[start]"></ng-content>
+<span *ngFor="let rating of ratingArr;let i=index" (click)="rate(i+(rating?(value>i+1?1:0):1))">
+    <!-- (click)="rate(i+(rating?(value>i+1?1:0):1))" -->
+    <ng-container *ngIf="rating;else noStar">⭐</ng-container>
+    <ng-template #noStar><span class="grayscale">⭐</span></ng-template>
+</span>
+<ng-content select="[end]"></ng-content>
