@@ -1,0 +1,17 @@
+<div>
+    <form #userForm="ngForm" (ngSubmit)="submit(userForm)">
+        <div>
+            <label for="name">Name</label>
+            <input #name="ngModel" name="name" [(ngModel)]="user.name" (input)="checkName(name)" required />
+            <span *ngIf="name.control.touched && name.control.errors?.['required']">UserName is required</span>
+        </div>
+        <div>
+            <label for="email">Email</label>
+            <input #email="ngModel" name="email" [(ngModel)]="user.email" (input)="checkControl(email)" />
+            {{email.control.errors?.["error"]}}
+        </div>
+        <div>
+            <button type="Submit">Submit</button>
+        </div>
+    </form>
+</div>

@@ -27,12 +27,13 @@ export class RatingComponent implements ControlValueAccessor {
   }
 
   rate(rating: number) {
-    this.writeValue(rating);
+    if (!this.disabled) {
+      this.writeValue(rating);
+    }
   }
 
   writeValue(rating: number): void {
     this.ratingArr = this.ratingArr.map((_, idx) => idx < rating);
-    console.log(this.ratingArr);
     this.onChange(this.value);
   }
   registerOnChange(fn: (rating: number) => void): void {

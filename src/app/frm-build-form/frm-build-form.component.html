@@ -1,0 +1,37 @@
+<div>
+    <form [formGroup]="userForm" (ngSubmit)="submit()">
+        <div>
+            <label for="name">Name</label>
+            <input name="name" formControlName="name" />
+            <span class="text-red-400" *ngIf="userForm.get('name')?.touched">
+                <span class="text-red-400" *ngIf="userForm.get('name')?.errors?.['required']">
+                    UserName is required
+                </span>
+                <span class="text-red-400" *ngIf="userForm.get('name')?.errors?.['invalidPattern']">
+                    Pattern is invalid
+                </span>
+            </span>
+
+        </div>
+        <div>
+            <label for="email">Email</label>
+            <input name="email" formControlName="email" />
+            <div class="text-red-700">{{emailErrors()}}</div>
+        </div>
+        <div>
+            <label for="isWorking">Working</label>
+            <input name="isWorking" type="checkbox" checked formControlName="isWorking" />
+        </div>
+        <div>
+            <span>Hobbies</span>
+            <fieldset id="hobbie" class="flex gap-4">
+                <label>Music</label><input type="radio" value="Music" name="hobbie" formControlName="hobbie">
+                <label>Reading</label><input type="radio" value="Reading" name="hobbie" formControlName="hobbie">
+                <label>Gaming</label><input type="radio" value="Gaming" name="hobbie" formControlName="hobbie">
+            </fieldset>
+        </div>
+        <div>
+            <button type="Submit">Submit</button>
+        </div>
+    </form>
+</div>

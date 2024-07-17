@@ -1,0 +1,21 @@
+<div>
+    <form [formGroup]="userForm" (ngSubmit)="submit()">
+        <div formArrayName="employee">
+            <div *ngFor="let emp of emp['controls'];let i=index">
+                <div [formGroupName]="i">
+                    <div>
+                        <label for="name">Name</label>
+                        <input name="name" formControlName="name" />
+                    </div>
+                    <div>
+                        <label for="email">Email</label>
+                        <input name="email" formControlName="email" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button type="submit">Submit</button>
+    </form>
+
+    <button type="button" (click)="addEmployee()">Add Employee</button>
+</div>

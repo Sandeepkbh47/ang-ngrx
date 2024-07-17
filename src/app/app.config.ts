@@ -1,5 +1,9 @@
-import { ApplicationConfig, importProvidersFrom } from '@angular/core';
-import { provideRouter } from '@angular/router';
+import {
+  ApplicationConfig,
+  importProvidersFrom,
+  InjectionToken,
+} from '@angular/core';
+import { provideRouter, withDebugTracing } from '@angular/router';
 
 import { routes } from './app.routes';
 import { createFeature, StoreModule } from '@ngrx/store';
@@ -35,9 +39,10 @@ export const storeConfig = {
   posts: postReducer,
   auth: authReducer,
 };
+export const TOKEN = new InjectionToken<string>('SomeToken');
 export const appConfig: ApplicationConfig = {
   providers: [
-    provideRouter(routes),
+    provideRouter(routes, withDebugTracing()),
     provideHttpClient(withInterceptors([authInterceptor])),
     provideRouterStore(),
     importProvidersFrom(
@@ -54,5 +59,9 @@ export const appConfig: ApplicationConfig = {
         },
       })
     ),
+    {
+      provide: TOKEN,
+      useValue: 'Amazing',
+    },
   ],
 };
